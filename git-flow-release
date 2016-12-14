@@ -229,7 +229,7 @@ cmd_finish() {
 		git_do checkout "$MASTER_BRANCH" || \
 		  die "Could not check out $MASTER_BRANCH."
 		if noflag squash; then
-			git_do merge --no-ff "$BRANCH" || \
+			git_do merge --ff "$BRANCH" || \
 				die "There were merge conflicts."
 				# TODO: What do we do now?
 		else
