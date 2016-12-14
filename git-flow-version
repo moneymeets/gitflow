@@ -38,6 +38,10 @@
 
 GITFLOW_VERSION=0.4.2-pre
 
+init() {
+	:
+}
+
 usage() {
 	echo "usage: git flow version"
 }
