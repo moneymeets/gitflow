@@ -45,15 +45,9 @@ if [ "$DEBUG" = "yes" ]; then
 	set -x
 fi
 
-if [ "$(uname)" = "Darwin" ]; then
-    READLINK_ARGS=""
-else
-    READLINK_ARGS="-f"
-fi
-
 # The sed expression here replaces all backslashes by forward slashes.
 # This helps our Windows users, while not bothering our Unix users.
-export GITFLOW_DIR=$(dirname $(readlink $READLINK_ARGS "$(echo "$0" | sed -e 's,\\,/,g')"))
+export GITFLOW_DIR=$(dirname $(python -c "import os,sys; print(os.path.realpath(os.path.expanduser(sys.argv[1])))" "$(echo "$0" | sed -e 's,\\,/,g')"))
 
 usage() {
 	echo "usage: git flow <subcommand>"
